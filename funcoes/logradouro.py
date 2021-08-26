@@ -21,6 +21,7 @@ def buscaLogradouro(log, arq):
     else: 
         print('\nNenhum logradouro foi encontrado.')
 
+
 def logradouro(arq):
     os.system('cls') or None
     log = input('Digite todo ou parte do logradouro:\n')

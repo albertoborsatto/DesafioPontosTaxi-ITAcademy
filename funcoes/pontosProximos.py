@@ -42,7 +42,7 @@ def TestaIguais(lat, lon, arq, indice, flag):
 def Mostra(array, arq):
     os.system('cls') or None
     print('Os pontos de taxi mais próximos são:\n')
-    print(arq.iloc[[array[0], array[1], array[2]]])
+    print(arq.iloc[array])
 
 
 def MaisProximos2(stringArray, arq):
