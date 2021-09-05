@@ -39,34 +39,37 @@ def TestaIguais(lat, lon, arq, indice, flag):
             if(search1[index] == lat and search2[index] == lon):
                 return index
    
-def Mostra(array, arq):
+def Mostra(array, arq, dists):
+    aux = arq.iloc[array]
+    aux['distâncias'] = dists
     os.system('cls') or None
     print('Os pontos de taxi mais próximos são:\n')
-    print(arq.iloc[array])
-
-
+    print(aux)
+    
 def MaisProximos2(stringArray, arq):
     flag = 0
     indice = 0
     pontos = []
+    dists = []
     
     for coord in stringArray:
-        final = Troca(coord[0], coord[1], '.', ',')
+        final = Troca(coord[1], coord[2], '.', ',')
+        dists.append(coord[0])
         lat = final[0]
         lon = final[1]
         if(lat == '1,0'): lat = '1'
         if(lon == '1,0'): lon = '1'
-        print(lat, lon)
         indice = TestaIguais(lat, lon, arq, indice, flag)
         flag += 1
         pontos.append(indice)
-    Mostra(pontos, arq)
+    Mostra(pontos, arq, dists)
     
 
 def FloatToString(array):
     for coord in array:
         coord[0] = str(coord[0])
         coord[1] = str(coord[1])
+        coord[2] = str(coord[2])
     return array
 
 
@@ -75,7 +78,7 @@ def MaisProximos(array, arq):
     final = Ordena(array)
     
     for i in range(3):
-        ostres.append(final[i][1:])
+        ostres.append(final[i])
     string = FloatToString(ostres)
     MaisProximos2(string, arq)
 
